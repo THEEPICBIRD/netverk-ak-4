@@ -1,0 +1,14 @@
+---
+- name: Configure EtherChannel
+  hosts: switches
+  gather_facts: no
+
+  tasks:
+    - name: Configure EtherChannel Port-channel 1
+      cisco.ios.ios_lag_interfaces:
+        group: 1
+        mode: active
+        members:
+          - Fa0/1
+          - Fa0/2
+        state: present
