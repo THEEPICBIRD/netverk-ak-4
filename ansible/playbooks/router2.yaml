@@ -1,6 +1,6 @@
 ---
 - name: Configure Router Interfaces
-  hosts: R1
+  hosts: R2
   gather_facts: no
   connection: network_cli
 
@@ -34,7 +34,7 @@
           - no shutdown
 
 - name: Configure Routing between STUD1 and STUD2
-  hosts: R1
+  hosts: R2
   gather_facts: no
 
   tasks:
@@ -48,7 +48,7 @@
 
 
 - name: Configure DHCP on Cisco Router
-  hosts: R1
+  hosts: R2
   gather_facts: false
   connection: network_cli
 
