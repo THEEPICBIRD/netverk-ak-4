@@ -21,7 +21,7 @@ git clone <repo-url>
 
 Steg 2
 
-Kjør Python-scriptet for å konfigurere administrasjons-IP (mgmt IP) på enhetene og aktivere SSH-tilgang. følg ip plan sim ligger ved, hvis du ønsker å bruke andre iper så må inventory.yaml filen oppdateres med nmye iper. OBS fra dette steget er det viktig å se om enehten bruker FastEthernet eller GigabitEthernet. all code er satt opp med Gigabit med mindre den spør om input fra deg.
+Kjør Python-scriptet for å konfigurere administrasjons-IP (mgmt IP) på enhetene og aktivere SSH-tilgang. dette må gjøres via consoll kabel. følg ip plan sim ligger ved, hvis du ønsker å bruke andre iper så må inventory.yaml filen oppdateres med nmye iper. OBS fra dette steget er det viktig å se om enehten bruker FastEthernet eller GigabitEthernet. all code er satt opp med Gigabit med mindre den spør om input fra deg.
 
 Steg 3
 
