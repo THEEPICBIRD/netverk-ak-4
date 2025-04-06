@@ -1,18 +1,38 @@
 # netverk-ak-4
-Dette oppsette er for 2 rutere med hsrp og dhcp, 2 switcher hvor en har etherchannel.
+Dette oppsettet konfigurerer to rutere med HSRP og DHCP, samt to switcher hvor én av dem bruker EtherChannel.
 
-prereqs
+Forutsetninger
 
-cisco nettverks enehter
+Cisco-nettverksenheter
 
-ansible controller i linux
+Ansible controller med Linux
 
-må kjøre følgenmde kommando i linux ansible-galaxy collection install cisco.ios
+Installer nødvendige Ansible-samlinger med følgende kommando:
+
+ansible-galaxy collection install cisco.ios
 
 Hvordan kjøre oppsettet
 
-steg 1 clone github repo
+Steg 1
 
-steg 2 kjør python script for å sette mgmgt ip på enhetene og opprette mulighet for ssh påloggning.
+Klone GitHub-repositoriet:
 
-steg 3 sørg for at du lagrer scriptene på filområdet som matcher ansible.cfg filen hvis ikke må du oppdatere filstien.
+git clone <repo-url>
+
+Steg 2
+
+Kjør Python-scriptet for å konfigurere administrasjons-IP (mgmt IP) på enhetene og aktivere SSH-tilgang.
+
+Steg 3
+
+Sørg for at Ansible-scriptene lagres på det filområdet som er angitt i ansible.cfg. Dersom du bruker en annen filbane, må du oppdatere denne filbanen i ansible.cfg.
+
+Steg 4
+
+Kjør Ansible-scriptene i følgende rekkefølge:
+
+R1 -> R2 -> SW2 -> SW3
+
+Det anbefales å vente cirka 5 minutter mellom hvert script for å verifisere at konfigurasjonen blir korrekt utført.
+
+
