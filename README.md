@@ -21,7 +21,7 @@ git clone <repo-url>
 
 Steg 2
 
-Kjør Python-scriptet for å konfigurere administrasjons-IP (mgmt IP) på enhetene og aktivere SSH-tilgang.
+Kjør Python-scriptet for å konfigurere administrasjons-IP (mgmt IP) på enhetene og aktivere SSH-tilgang. følg ip plan sim ligger ved, hvis du ønsker å bruke andre iper så må inventory.yaml filen oppdateres med nmye iper
 
 Steg 3
 
