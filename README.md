@@ -15,4 +15,4 @@ steg 1 clone github repo
 
 steg 2 kjør python script for å sette mgmgt ip på enhetene og opprette mulighet for ssh påloggning.
 
-steg 3 
+steg 3 sørg for at du lagrer scriptene på filområdet som matcher ansible.cfg filen hvis ikke må du oppdatere filstien.
