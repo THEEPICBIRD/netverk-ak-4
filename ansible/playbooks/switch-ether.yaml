@@ -1,0 +1,53 @@
+---
+- name: Configure VLANs on Switch
+  hosts: SW1
+  gather_facts: false
+  connection: network_cli
+  tasks:
+    - name: Configure VLANs
+      cisco.ios.ios_config:
+        lines:
+          - vlan 12
+          - name VLAN12_STUD2
+          - vlan 10
+          - name VLAN10 mgmt
+          - vlan 11
+          - name VLAN11_STUD1
+          - vlan 13
+          - name VLAN13_mgmt2
+
+- name: Configure switchports on Switch
+  hosts: SW1
+  gather_facts: false
+  connection: network_cli
+  tasks:
+    - name: Set ports 1-3 to trunk mode
+      cisco.ios.ios_config:
+        parents: "interface range GigabitEthernet1/0/1-3"
+        lines:
+          - switchport mode trunk
+
+    - name: Set ports 5-8 to access mode on VLAN 12
+      cisco.ios.ios_config:
+        parents: "interface range GigabitEthernet1/0/5-8"
+        lines:
+          - switchport mode access
+          - switchport access vlan 12
+
+    - name: Set ports 9-12 to access mode on VLAN 11
+      cisco.ios.ios_config:
+        parents: "interface range GigabitEthernet1/0/9-12"
+        lines:
+          - switchport mode access
+          - switchport access vlan 11
+
+- name: Configure EtherChannel on Switch
+  hosts: SW1
+  gather_facts: false
+  connection: network_cli
+  tasks:
+    - name: Configure EtherChannel on ports 1-2
+      cisco.ios.ios_config:
+        parents: "interface range GigabitEthernet1/0/1-2"
+        lines:
+          - channel-group 1 mode on

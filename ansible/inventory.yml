@@ -1,0 +1,11 @@
+## Ansible Hosts File for Lab 
+
+
+[Routers]
+R1 ansible_host=192.168.10.10 ansible_network_os=cisco.ios.ios ansible_connection=network_cli ansible_user=cisco ansible_password=cisco
+R2 ansible_host=192.168.10.11 ansible_network_os=cisco.ios.ios ansible_connection=network_cli ansible_user=cisco ansible_password=cisco
+
+[Switches]
+SW1 ansible_host=192.168.10.250 ansible_network_os=cisco.ios.ios ansible_connection=network_cli ansible_user=cisco ansible_password=cisco
+SW2 ansible_host=192.168.10.251 ansible_network_os=cisco.ios.ios ansible_connection=network_cli ansible_user=cisco ansible_password=cisco
+SW3 ansible_host=192.168.10.252 ansible_network_os=cisco.ios.ios ansible_connection=network_cli ansible_user=cisco ansible_password=cisco

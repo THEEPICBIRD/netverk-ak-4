@@ -1,0 +1,71 @@
+---
+- name: Configure Router Interfaces
+  hosts: R1
+  gather_facts: no
+  connection: network_cli
+
+  tasks:
+    - name: Enable physical interface GigabitEthernet0/0/0
+      ios_config:
+        parents: "interface GigabitEthernet0/0/0"
+        lines:
+          - no shutdown
+
+    - name: Configure subinterface GigabitEthernet0/0/0.12
+      ios_config:
+        parents: "interface GigabitEthernet0/0/0.12"
+        lines:
+          - encapsulation dot1Q 12
+          - ip address 192.168.12.2 255.255.255.0
+          - standby version 2
+          - standby 1 ip 192.168.12.1
+          - standby 1 priority 110
+          - standby 1 preempt
+          - no shutdown
+        
+    - name: Configure subinterface GigabitEthernet0/0/0.13
+      ios_config:
+        parents: "interface GigabitEthernet0/0/0.13"
+        lines:
+          - encapsulation dot1Q 13
+          - ip address 192.168.13.2 255.255.255.0
+          - standby version 2
+          - standby 2 ip 192.168.13.1
+          - standby 2 priority 110
+          - standby 2 preempt
+          - no shutdown
+
+- name: Configure Routing between STUD1 and STUD2
+  hosts: R1
+  gather_facts: no
+
+  tasks:
+    - name: Configure OSPF routing
+      cisco.ios.ios_config:
+        state: merged
+        lines:
+          - router ospf 1
+          - router-id 1.1.1.1
+          - network 192.168.12.0 0.0.0.255 area 0
+
+
+- name: Configure DHCP on Cisco Router
+  hosts: R1
+  gather_facts: false
+  connection: network_cli
+
+  tasks:
+    - name: Configure DHCP Pool on R1
+      cisco.ios.ios_config:
+        lines:
+          - ip dhcp pool LAN_POOL
+          - network 192.168.12.0 255.255.255.0
+          - default-router 192.168.12.1
+          - dns-server 8.8.8.8
+          - lease 7
+
+    - name: Exclude addresses not in 20-50 for DHCP on R1
+      cisco.ios.ios_config:
+        lines:
+          - ip dhcp excluded-address 192.168.12.1 192.168.12.19
+          - ip dhcp excluded-address 192.168.12.51 192.168.12.254
