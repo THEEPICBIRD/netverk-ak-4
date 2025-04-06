@@ -9,3 +9,10 @@ ansible controller i linux
 
 må kjøre følgenmde kommando i linux ansible-galaxy collection install cisco.ios
 
+Hvordan kjøre oppsettet
+
+steg 1 clone github repo
+
+steg 2 kjør python script for å sette mgmgt ip på enhetene og opprette mulighet for ssh påloggning.
+
+steg 3 
